@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="contact.css" />
+    <link rel="icon" href="icon.png">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">VISHAL V</div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../About/about.html">About</a></li>
+        <li><a href="../Experience/experience.html">Experience</a></li>
+        <li><a href="../Portfolio/project.html">Projects</a></li>
+        <li><a href="../Contact/contact.html">Contact</a></li>
+      </ul>
+      <!-- Hamburger Menu -->
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </nav>
+
+    <!-- Particles Container -->
+    <div id="particles-js"></div>
+
+    <!-- Sections -->
+    <section class="contact-content" id="contact">
+      <div class="container">
+        <div class="contact-title">
+          <h4>Contact Me</h4>
+          <p>Get In Touch</p>
+        </div>
+        <div class="contact">
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="00929bf3-9d5a-4d31-aeeb-cf7d5c706b7f" />
+            <input type="text" name="name" placeholder="Name" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="text" name="subject" placeholder="Subject" />
+            <textarea name="message" placeholder="Message"></textarea>
+            <input type="submit" value="Send Message" class="submit" />
+          </form>
+          <span id="msg"></span>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer">
+      <footer>
+          <p>&copy 2024 Designed & Made by Vishal</p>
+      </footer>
+    </div>
+
+    <!-- Particles.js Script -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles.js"></script>
+
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const form = e.target;
+          const formData = new FormData(form);
+
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          let msg = document.getElementById("msg");
+          if (response.ok) {
+            msg.textContent = "Message sent successfully!";
+            form.reset();
+          } else {
+            msg.textContent = "Oops! Something went wrong.";
+          }
+        });
+    </script>
+  </body>
+</html>
